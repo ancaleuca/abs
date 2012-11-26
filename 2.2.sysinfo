@@ -1,0 +1,21 @@
+#!/bin/bash
+
+getDate() {
+    date +%c
+}
+
+getUsers() {
+    who | awk -vORS=, '{print $1}' | sed 's/,$//' 
+}
+
+getUptime() {
+    uptime
+}
+
+LOGFILE=2.2.log
+
+echo "Date: $(getDate)" 1>>$LOGFILE
+echo "Logged in users: $(getUsers)" 1>>$LOGFILE
+echo "System uptime: $(getUptime)" 1>>$LOGFILE
+
+exit 0
